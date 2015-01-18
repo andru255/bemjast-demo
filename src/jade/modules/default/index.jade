@@ -1,4 +1,7 @@
 extends ../../_layout/default.jade
+//the own css
+block module_css
+    link(href="#{page.static_url}css/modules/default/index.css#{page.version}", media="all", rel="stylesheet", type="text/css")
 //demo index
 block b-header
     h1 Hello its a BEM demo

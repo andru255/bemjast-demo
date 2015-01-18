@@ -3,8 +3,12 @@ var BUILD_PATH = "build/";
 
 var gulp = require("gulp"),
     stylus = require("gulp-stylus"),
-    jade = require("gulp-jade");
+    jade = require("jade"),
+    gulpJade = require("gulp-jade"),
+    debug = require("gulp-debug"),
+    gutil = require("gulp-util");
 
+/**********paths************/
 var path = {
     stylus:{
         src: [
@@ -28,6 +32,7 @@ var watchPaths = {
         stylus: [SRC_PATH + path.stylus.src],
         jade:   [SRC_PATH + path.jade.src]
 };
+
 /**************tasks*************/
 gulp.task("2css", function(){
     return gulp.src(path.stylus.src)
@@ -37,10 +42,15 @@ gulp.task("2css", function(){
         .pipe(gulp.dest(path.stylus.build));
 });
 
+jade.filters.block = function(str){
+};
+
 gulp.task("2html", function(){
+    gutil.log("str", path.jade.src)
     return gulp.src(path.jade.src)
-        .pipe(jade({
-            pretty: true
+        .pipe(gulpJade({
+            pretty: true,
+            compileDebug: true
         }))
         .pipe(gulp.dest(path.jade.build));
 });
