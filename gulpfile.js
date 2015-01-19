@@ -10,6 +10,10 @@ var gulp = require("gulp"),
 
 /**********paths************/
 var path = {
+    statics: {
+        src: SRC_PATH + "static/**/*.*",
+        build: BUILD_PATH + "static/"
+    },
     stylus:{
         src: [
             SRC_PATH + "stylus/*.styl",
@@ -42,9 +46,6 @@ gulp.task("2css", function(){
         .pipe(gulp.dest(path.stylus.build));
 });
 
-jade.filters.block = function(str){
-};
-
 gulp.task("2html", function(){
     gutil.log("str", path.jade.src)
     return gulp.src(path.jade.src)
@@ -53,6 +54,11 @@ gulp.task("2html", function(){
             compileDebug: true
         }))
         .pipe(gulp.dest(path.jade.build));
+});
+
+gulp.task("copy_statics", function(){
+    return gulp.src(path.statics.src)
+        .pipe(gulp.dest(path.statics.build));
 });
 
 gulp.task("watch", function(){
