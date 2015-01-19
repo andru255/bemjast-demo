@@ -1,0 +1,13 @@
+extends ../../_layout/default.jade
+//own css
+block module_css
+    link(href="#{page.static_url}css/modules/blog/index.css#{page.version}", media="all", rel="stylesheet", type="text/css")
+//demo index
+block b-header
+    a
+        img(src="")
+    include ../../_blocks/menu.jade
+    include ../../_blocks/search.jade
+
+block content
+    p here mi blog in building...
