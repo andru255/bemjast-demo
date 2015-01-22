@@ -6,7 +6,31 @@ var gulp = require("gulp"),
     jade = require("jade"),
     gulpJade = require("gulp-jade"),
     debug = require("gulp-debug"),
-    gutil = require("gulp-util");
+    gutil = require("gulp-util"),
+    file = require("gulp-file"),
+    parseArgs = require("minimist"),
+    runTask = function(taskName, options){
+        var taskSelf = require("./tasks/"+ taskName);
+        var globals = {
+            SRC_PATH: SRC_PATH,
+            BUILD_PATH: BUILD_PATH
+        };
+        var librariesForTask = {
+            gutil: gutil,
+            parseArgs: parseArgs,
+            file: file
+        };
+        return new taskSelf(gulp, options, librariesForTask);
+    },
+    runMainTask = function(taskName, options){
+        var taskSelf = require("./tasks/"+ taskName + "/main.js");
+        var librariesForTask = {
+            gutil: gutil,
+            parseArgs: parseArgs,
+            file: file
+        };
+        return new taskSelf(gulp, options, librariesForTask);
+    };
 
 /**********paths************/
 var path = {
@@ -33,8 +57,8 @@ var path = {
 };
 
 var watchPaths = {
-        stylus: [SRC_PATH + path.stylus.src],
-        jade:   [SRC_PATH + path.jade.src]
+        stylus: SRC_PATH + path.stylus.src,
+        jade:   SRC_PATH + path.jade.src
 };
 
 /**************tasks*************/
@@ -59,6 +83,47 @@ gulp.task("2html", function(){
 gulp.task("copy_statics", function(){
     return gulp.src(path.statics.src)
         .pipe(gulp.dest(path.statics.build));
+});
+
+//** utily for bem command
+
+runTask("bemjast-command", {
+    params: process.argv
+    //blockJadePath: SRC_PATH + "jade/_blocks/",
+    //blockStylusPath: SRC_PATH + "stylus/_blocks/"
+});
+
+runMainTask("bemjast", {
+    params: process.argv
+    //blockJadePath: SRC_PATH + "jade/_blocks/",
+    //blockStylusPath: SRC_PATH + "stylus/_blocks/"
+});
+
+gulp.task("bemd", function(){
+    var arguments = process.argv,
+        options = arguments.slice(2),
+        parsed = parseArgs( arguments.slice(2), {} );
+
+    //loging arguments
+    gutil.log("arguments", arguments);
+    gutil.log("options", options);
+    gutil.log("parsed", parsed);
+
+    //receive filtered parameters
+    var blockName = parsed.b
+
+    //demo create a block
+    var newBlockJadeFile = SRC_PATH + "jade/_blocks/" + newJadeFile(blockName);
+    var newBlockStylusFile = SRC_PATH + "stylus/_blocks/" + newStylusFile(blockName);
+
+    //logs
+    gutil.log("creating the files by the block:", blockName);
+    gutil.log("jade:", newBlockJadeFile);
+    gutil.log("stylus:", newBlockStylusFile);
+
+    return gulp;
+    //return gulp.src(path.statics.src)
+        //.pipe(gulp.dest(path.statics.build));
 });
 
 gulp.task("watch", function(){
