@@ -86,17 +86,10 @@ gulp.task("copy_statics", function(){
 });
 
 //** utily for bem command
-
-runTask("bemjast-command", {
-    params: process.argv
-    //blockJadePath: SRC_PATH + "jade/_blocks/",
-    //blockStylusPath: SRC_PATH + "stylus/_blocks/"
-});
-
 runMainTask("bemjast", {
     params: process.argv
-    //blockJadePath: SRC_PATH + "jade/_blocks/",
-    //blockStylusPath: SRC_PATH + "stylus/_blocks/"
+    blockJadePath: SRC_PATH + "jade/_blocks/",
+    blockStylusPath: SRC_PATH + "stylus/_blocks/"
 });
 
 gulp.task("bemd", function(){
