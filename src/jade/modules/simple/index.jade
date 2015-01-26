@@ -1,0 +1,11 @@
+extends ../../_layout/default.jade
+//own css
+block module_css
+    link(href="#{page.static_url}css/modules/simple/index.css#{page.version}", media="all", rel="stylesheet", type="text/css")
+
+block b-header
+    //p the content for show in the block header
+    include _blocks/logo.jade
+    include _blocks/menu.jade
+block content
+    p Simple test of use bemjast :D
