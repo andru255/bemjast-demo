@@ -1,5 +1,5 @@
 var Stream = require("stream");
-var HelperGulpCallback = function(whenStreamIsTransform){
+var Helper_Gulp_Callback = function(whenStreamIsTransform){
     "use strict";
     var stream = new Stream.Transform({objectMode: true});
 
@@ -11,5 +11,5 @@ var HelperGulpCallback = function(whenStreamIsTransform){
     return stream;
 };
 
-module.exports = HelperGulpCallback;
+module.exports = Helper_Gulp_Callback;
 

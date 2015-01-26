@@ -1,15 +1,15 @@
 var PathLib = require("path");
 var gutil = require("gulp-util");
 
-var Helper_Gulp_File = require("../../helper/gulp/file.js");
-var Helper_ListFiles = require("../../helper/list_files.js");
-var Helper_StringFile = require("../../helper/string_file.js");
-var Factory_Stylus = require("../../factory/stylus.js");
+var Helper_Gulp_File = require("../../../helper/gulp/file.js");
+var Helper_ListFiles = require("../../../helper/list_files.js");
+var Helper_StringFile = require("../../../helper/string_file.js");
+var Factory_Stylus = require("../../../factory/stylus.js");
 
-var templatePath = __dirname + "../../../templates/stylus/modules/all/";
-var templateName = "all.styl";
+var templatePath = __dirname + "../../../../templates/stylus/modules/module/";
+var templateName = "view.styl";
 
-var generateListBlockWithRelativePath = function( relativePath, listBlock){
+var generateListBlockWithRelativePath = function(relativePath, listBlock){
     var blocksWithRelativePath = [];
     listBlock.forEach(function(blockName){
         blocksWithRelativePath.push(PathLib.join(relativePath, blockName));
@@ -33,7 +33,7 @@ var getBlockNames = function(pathToRead, whenItsFinished){
     });
 };
 
-var Generator_Stylus_All = function(pathToRead, path, fileName){
+var Generator_Stylus_View = function(pathToRead, path, fileName){
     var objFactoryStylus = new Factory_Stylus(path);
     var relativePath = PathLib.relative(path, pathToRead);
 
@@ -45,4 +45,4 @@ var Generator_Stylus_All = function(pathToRead, path, fileName){
     });
 };
 
-module.exports = Generator_Stylus_All;
+module.exports = Generator_Stylus_View;

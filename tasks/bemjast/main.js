@@ -1,4 +1,4 @@
-var Helper_Extend = require("./helpers/extend.js");
+var Helper_Extend = require("./helper/extend.js");
 var Validation = require("./validation/all.js");
 var Process = require("./process/all.js");
 
@@ -15,8 +15,8 @@ var Task = function(gulp, options, librariesForTask){
         blockStylusPath: "./dummy/stylus/_blocks/",
         moduleJadePath: "./dummy/jade/modules/",
         moduleStylusPath: "./dummy/stylus/modules/",
-        pathAllModulesStylus: "./dummy/stylus/all/",
-        fileNameAllModulesStylus: "all.styl"
+        pathAllModulesStylus: "./dummy/stylus/modules/all/",
+        fileNameAllModulesStylus: "all"
     };
 
     var settings = Helper_Extend({},defaults, options);
@@ -28,6 +28,30 @@ var Task = function(gulp, options, librariesForTask){
     var paramBlockName = parsedParams.b;
     var paramModuleName = parsedParams.m;
     var paramViewName = parsedParams.v;
+
+    var orderList = [];
+
+    var startOptionList = function(){
+        var index = 0;
+        while(orderList.length > index){
+            var statement = orderList[index];
+            console.log('statement', statement.query);
+            if(statement.query){
+                statement.whenQueryItsTrue();
+                break;
+            } else {
+                index++;
+            }
+        }
+    };
+
+    var registerToOptionList = function(query, whenQueryItsTrue){
+
+        orderList.push({
+            query: query,
+            whenQueryItsTrue: (typeof whenQueryItsTrue === "undefined")? function(){}: whenQueryItsTrue
+        });
+    }
 
     var taskSelf = function(){
         //loging arguments
@@ -46,18 +70,48 @@ var Task = function(gulp, options, librariesForTask){
             log("moduleName", moduleName);
             log("viewName", viewName);
 
-            if(Validation.isOnlyBlock(blockName, moduleName, viewName)){
-                log("runs when its declared some -b");
-                Process.onlyBlock(blockName, settings);
-            } else {
-                if(Validation.isBlockAndModuleButNotView(blockName, moduleName, viewName)){
-                    log("runs when its declared some -b -mod");
-                } else {
-                    if(Validation.isBlockAndModuleAndView(blockName, moduleName, viewName)){
-                        log("runs when its declared some -b -mod -view");
-                    }
+
+            registerToOptionList(
+                Validation.isOnlyBlock(blockName, moduleName, viewName),
+                function(){
+                    log("runs when its declared only -b");
+                    Process.onlyBlock(blockName, settings);
                 }
-            }
+            );
+
+            registerToOptionList(
+                Validation.isOnlyModule(blockName, moduleName, viewName),
+                function(){
+                    log("runs when its declared only -m");
+                    Process.onlyModule(moduleName, settings);
+                }
+            );
+
+            registerToOptionList(
+                Validation.isModuleAndViewButNotBlock(blockName, moduleName, viewName),
+                function(){
+                    log("runs when its declared some -m -v");
+                    Process.moduleView(moduleName, viewName, settings);
+                }
+            );
+
+            registerToOptionList(
+                Validation.isBlockAndModuleButNotView(blockName, moduleName, viewName),
+                function(){
+                    log("runs when its declared some -b -m");
+                    Process.blockModule(blockName, moduleName, settings);
+                }
+            );
+
+            registerToOptionList(
+                Validation.isBlockAndModuleAndView(blockName, moduleName, viewName),
+                function(){
+                    log("runs when its declared some -b -m -v");
+                    Process.blockModuleView(blockName, moduleName, viewName, settings);
+                }
+            );
+
+            startOptionList();
         } catch(err){
             log("ERROR:", err);
         }

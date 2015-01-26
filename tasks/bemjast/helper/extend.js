@@ -1,4 +1,4 @@
-var HelperExtend = function(target){
+var Helper_Extend = function(target){
     var sources = [].slice.call(arguments, 1);
     sources.forEach(function(source){
         for(var prop in source){
@@ -7,4 +7,4 @@ var HelperExtend = function(target){
     });
     return target;
 };
-module.exports = HelperExtend;
+module.exports = Helper_Extend;

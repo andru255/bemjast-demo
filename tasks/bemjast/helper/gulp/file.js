@@ -1,7 +1,7 @@
 var Stream = require("stream");
 var gutil  = require("gulp-util");
 
-var HelperGulpFile = function(fileName, contents){
+var Helper_Gulp_File = function(fileName, contents){
     var src = Stream.Readable({objectMode: true});
     var optionsFile = {
         cwd: "",
@@ -16,4 +16,4 @@ var HelperGulpFile = function(fileName, contents){
     return src;
 };
 
-module.exports = HelperGulpFile;
+module.exports = Helper_Gulp_File;

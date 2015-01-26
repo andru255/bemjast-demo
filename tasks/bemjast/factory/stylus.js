@@ -1,22 +1,28 @@
 var gulp = require("gulp");
-var HelperGulpFile = require("../helpers/gulp/file.js");
-var HelperGulpCallback = require("../helpers/gulp/callback.js");
+var Helper_Gulp_File = require("../helper/gulp/file.js");
+var Helper_Gulp_Callback = require("../helper/gulp/callback.js");
 
-var FactoryStylus = function(path){
+var Factory_Stylus = function(path){
     this.path = path;
 };
 
-FactoryStylus.prototype.doFileNameWithExtension = function(fileName){
+Factory_Stylus.prototype.doFileNameWithExtension = function(fileName){
     return fileName + ".styl";
 };
 
-FactoryStylus.prototype.createFile = function(fileName, content, whenFileCreated){
+Factory_Stylus.prototype.createFile = function(fileName, content, whenFileCreated){
     var fileNameWithExtension = this.doFileNameWithExtension(fileName);
-    return HelperGulpFile(fileNameWithExtension, content)
+    var callbackWhenFileCreated = function(){};
+
+    if(typeof whenFileCreated === "function"){
+        callbackWhenFileCreated = whenFileCreated;
+    }
+
+    return Helper_Gulp_File(fileNameWithExtension, content)
             .pipe(gulp.dest(this.path))
-            .pipe(HelperGulpCallback(function(){
-                whenFileCreated.call(this);
+            .pipe(Helper_Gulp_Callback(function(){
+                callbackWhenFileCreated.call(this);
             }));
 };
 
-module.exports = FactoryStylus;
+module.exports = Factory_Stylus;

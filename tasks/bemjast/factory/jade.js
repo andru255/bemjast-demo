@@ -1,17 +1,28 @@
 var gulp = require("gulp");
-var file = require("gulp-file");
+var Helper_Gulp_File = require("../helper/gulp/file.js");
+var Helper_Gulp_Callback = require("../helper/gulp/callback.js");
 
-var jade_creator = function(path){
+var Factory_Jade = function(path){
     this.path = path;
 };
 
-jade_creator.prototype.doFileNameWithExtension = function(fileName){
+Factory_Jade.prototype.doFileNameWithExtension = function(fileName){
     return fileName + ".jade";
 };
 
-jade_creator.prototype.createFile = function(fileName, content){
+Factory_Jade.prototype.createFile = function(fileName, content, whenFileCreated){
     var fileNameWithExtension = this.doFileNameWithExtension(fileName);
-    return file(fileNameWithExtension, content, {src: true}).pipe(gulp.dest(this.path));
+    var callbackWhenFileCreated = function(){};
+
+    if(typeof whenFileCreated === "function"){
+        callbackWhenFileCreated = whenFileCreated;
+    }
+
+    return Helper_Gulp_File(fileNameWithExtension, content)
+            .pipe(gulp.dest(this.path))
+            .pipe(Helper_Gulp_Callback(function(){
+                callbackWhenFileCreated.call(this);
+            }));
 };
 
-module.exports = jade_creator;
+module.exports = Factory_Jade;

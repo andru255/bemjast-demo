@@ -5,7 +5,7 @@ var isBlockAndModuleButNotView= function(blockName, moduleName, viewName){
                 result = true;
             } else {
                 result = false;
-                throw "For create a block and module declare like this: -b [blockName] -m [moduleName]";
+                //throw "For create a block and module declare like this: -b [blockName] -m [moduleName]";
             }
         } else {
             result = false;

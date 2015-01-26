@@ -4,7 +4,7 @@ var isBlockAndModuleAndView = function(blockName, moduleName, viewName){
             result = true;
         } else {
             result = false;
-                throw "For create a block and module and view declare like this: -b [blockName] -m [moduleName] -v [viewName]";
+            //throw "For create a block and module and view declare like this: -b [blockName] -m [moduleName] -v [viewName]";
         }
         return result;
 };
