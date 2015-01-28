@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 .b-menu
+=======
++bl(menu)
+>>>>>>> Stashed changes
     background gray
     float right
     +e(link)

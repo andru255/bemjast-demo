@@ -32,13 +32,17 @@
     <meta property="og:url" content="http://localhost:8000/">
     <link href="http://localhost:8000/build/css/modules/all/fonts.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
     <link href="http://localhost:8000/build/css/modules/all/all.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
-    <link href="http://localhost:8000/build/css/modules/default/index.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
+    <link href="http://localhost:8000/build/css/modules/blog/index.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript">var emptyVariable = ""</script>
   </head>
   <body>
     <!--start header-->
+<<<<<<< Updated upstream
     <header class="b-header">
-      <h1>Hello its a BEM demo</h1>
+      <p>this is the block of header in BEM methodoly</p>
+=======
+    <header class="b-header"><a><img src=""></a>
+>>>>>>> Stashed changes
       <ul class="b-menu">
         <li class="b-menu__item"><a href="#" class="b-menu__link">Home</a>
         </li>
@@ -57,14 +61,26 @@
       </div>
     </header>
     <!--end header-->
-    <dl class="b-list">
-      <dt class="b-list__item-title">Item 1</dt>
-      <dd class="b-list__item-description">Item 1</dd>
-      <dt class="b-list__item-title">Item 2</dt>
-      <dd class="b-list__item-description">Item 2</dd>
-      <dt class="b-list__item-title">Item 3</dt>
-      <dd class="b-list__item-description">Item 3</dd>
-    </dl>
+    <div class="b-wrapper">
+      <div class="b-content">
+        <h1 class="b-content__main-title">Welcome to bemjast-blog!!
+        </h1>
+        <p class="b-content__main-content">
+           
+          Here is the content of the blog
+          Here is the content of the blog
+          Here is the content of the blog
+        </p>
+      </div>
+      <div class="b-widget-announce">
+        <h1 class="b-widget-announce__title-announce">Block Announce
+        </h1>
+        <div class="b-widget-announce__content-announce">
+          Here is the widget
+          Only show announces
+        </div>
+      </div>
+    </div>
     <!--start footer-->
     <div class="b-footer"><small class="b-footer__credits">@andru255 | @frontendlabs</small>
     </div>
