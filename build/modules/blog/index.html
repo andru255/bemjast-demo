@@ -38,23 +38,48 @@
   <body>
     <!--start header-->
     <header class="b-header">
-      <p>this is the block of header in BEM methodoly</p><a><img src=""></a>
+      <p>this is the block of header in BEM methodoly</p>
       <ul class="b-menu">
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Home</a></li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">About</a></li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Products</a></li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Contact</a></li>
+        <li class="b-menu__item"><a href="#" class="b-menu__link">Home</a>
+        </li>
+        <li class="b-menu__item"><a href="#" class="b-menu__link">About</a>
+        </li>
+        <li class="b-menu__item"><a href="#" class="b-menu__link">Products</a>
+        </li>
+        <li class="b-menu__item"><a href="#" class="b-menu__link">Contact</a>
+        </li>
       </ul>
       <div class="b-search">
-        <p class="b-search__description">this is a block search</p>
-        <input type="text" class="b-search__querystring">
-        <input type="submit" value="Buscar!" class="b-search__submit">
+        <p class="b-search__description">this is a block search
+        </p>
+        <input type="text" class="b-search__querystring"/>
+        <input type="submit" value="Buscar!" class="b-search__submit"/>
       </div>
     </header>
     <!--end header-->
-    <p>here mi blog in building...</p>
+    <div class="b-wrapper">
+      <div class="b-content">
+        <h1 class="b-content__main-title">Welcome to bemjast-blog!!
+        </h1>
+        <p class="b-content__main-content">
+           
+          Here is the content of the blog
+          Here is the content of the blog
+          Here is the content of the blog
+        </p>
+      </div>
+      <div class="b-widget-announce">
+        <h1 class="b-widget-announce__title-announce">Block Announce
+        </h1>
+        <div class="b-widget-announce__content-announce">
+          Here is the widget
+          Only show announces
+        </div>
+      </div>
+    </div>
     <!--start footer-->
-    <footer class="b-footer"><small class="b-footer__credits">@andru255 | @frontendlabs</small></footer>
+    <div class="b-footer"><small class="b-footer__credits">@andru255 | @frontendlabs</small>
+    </div>
     <!--end footer-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
   </body>

@@ -9,6 +9,7 @@ var gulp = require("gulp"),
     gutil = require("gulp-util"),
     file = require("gulp-file"),
     parseArgs = require("minimist"),
+    jeet = require("jeet"),
     runTask = function(taskName, options){
         var taskSelf = require("./tasks/"+ taskName);
         var globals = {
@@ -50,7 +51,8 @@ var path = {
         src: [
             SRC_PATH + "jade/*.jade",
             SRC_PATH + "jade/**/*.jade",
-            "!" + SRC_PATH + "jade/_**/*.jade"
+            "!" + SRC_PATH + "jade/_**/*.jade",
+            "!" + SRC_PATH + "jade/**/_**/*.jade"
         ],
         build: BUILD_PATH
     }
@@ -65,6 +67,7 @@ var watchPaths = {
 gulp.task("2css", function(){
     return gulp.src(path.stylus.src)
         .pipe(stylus({
+            use:[jeet()],
             compress: true
         }))
         .pipe(gulp.dest(path.stylus.build));
