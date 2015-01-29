@@ -40,6 +40,10 @@ var path = {
         build: BUILD_PATH + "static/"
     },
     stylus:{
+        watch: [
+            SRC_PATH + "stylus/*.styl",
+            SRC_PATH + "stylus/**/*.styl"
+        ],
         src: [
             SRC_PATH + "stylus/*.styl",
             SRC_PATH + "stylus/**/*.styl",
@@ -48,6 +52,10 @@ var path = {
         build: BUILD_PATH + "css/"
     },
     jade:{
+        watch: [
+            SRC_PATH + "jade/*.jade",
+            SRC_PATH + "jade/**/*.jade"
+        ],
         src: [
             SRC_PATH + "jade/*.jade",
             SRC_PATH + "jade/**/*.jade",
@@ -59,8 +67,8 @@ var path = {
 };
 
 var watchPaths = {
-        stylus: SRC_PATH + path.stylus.src,
-        jade:   SRC_PATH + path.jade.src
+        stylus: path.stylus.watch,
+        jade:   path.jade.watch
 };
 
 /**************tasks*************/
@@ -96,33 +104,6 @@ runMainTask("bemjast", {
     moduleJadePath: SRC_PATH + "jade/modules/",
     moduleStylusPath: SRC_PATH + "stylus/modules/",
     pathAllModulesStylus: SRC_PATH + "stylus/modules/all/",
-});
-
-gulp.task("bemd", function(){
-    var arguments = process.argv,
-        options = arguments.slice(2),
-        parsed = parseArgs( arguments.slice(2), {} );
-
-    //loging arguments
-    gutil.log("arguments", arguments);
-    gutil.log("options", options);
-    gutil.log("parsed", parsed);
-
-    //receive filtered parameters
-    var blockName = parsed.b
-
-    //demo create a block
-    var newBlockJadeFile = SRC_PATH + "jade/_blocks/" + newJadeFile(blockName);
-    var newBlockStylusFile = SRC_PATH + "stylus/_blocks/" + newStylusFile(blockName);
-
-    //logs
-    gutil.log("creating the files by the block:", blockName);
-    gutil.log("jade:", newBlockJadeFile);
-    gutil.log("stylus:", newBlockStylusFile);
-
-    return gulp;
-    //return gulp.src(path.statics.src)
-        //.pipe(gulp.dest(path.statics.build));
 });
 
 gulp.task("watch", function(){
