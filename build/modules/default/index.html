@@ -22,7 +22,7 @@
     <meta name="robots" content="index,follow">
     <meta name="keywords" content="keywords">
     <meta property="og:description" content="description">
-    <meta property="og:image" content="http://localhost:8000/build/img/logo_mimodule.png?aleatoryxD">
+    <meta property="og:image" content="http://localhost:8000/img/logo_mimodule.png?aleatoryxD">
     <meta property="og:image:height" content="60">
     <meta property="og:image:type" content="image/jpg">
     <meta property="og:image:width" content="90">
@@ -30,41 +30,24 @@
     <meta property="og:title" content="Demo of BEM">
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://localhost:8000/">
-    <link href="http://localhost:8000/build/css/modules/all/fonts.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
-    <link href="http://localhost:8000/build/css/modules/all/all.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
-    <link href="http://localhost:8000/build/css/modules/default/index.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
+    <link href="http://localhost:8000/css/modules/all/fonts.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
+    <link href="http://localhost:8000/css/modules/all/all.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
+    <link href="http://localhost:8000/css/modules/default/index.css?aleatoryxD" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript">var emptyVariable = ""</script>
   </head>
   <body>
     <!--start header-->
     <header class="b-header">
-      <h1>Hello its a BEM demo</h1>
-      <ul class="b-menu">
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Home</a>
-        </li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">About</a>
-        </li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Products</a>
-        </li>
-        <li class="b-menu__item"><a href="#" class="b-menu__link">Contact</a>
-        </li>
-      </ul>
-      <div class="b-search">
-        <p class="b-search__description">this is a block search
-        </p>
-        <input type="text" class="b-search__querystring"/>
-        <input type="submit" value="Buscar!" class="b-search__submit"/>
-      </div>
+      <h1 class="b-header__title">Welcome to the BEM-JaSt Demo!
+      </h1>
     </header>
     <!--end header-->
-    <dl class="b-list">
-      <dt class="b-list__item-title">Item 1</dt>
-      <dd class="b-list__item-description">Item 1</dd>
-      <dt class="b-list__item-title">Item 2</dt>
-      <dd class="b-list__item-description">Item 2</dd>
-      <dt class="b-list__item-title">Item 3</dt>
-      <dd class="b-list__item-description">Item 3</dd>
-    </dl>
+    <div class="b-content">
+      <div class="b-content__welcome">BEM + Jade + Stylus = BEM-JaSt
+      </div>
+      <p><a href="http://localhost:8000/modules/simple/index.html" class="b-content__see-demo">Click here for a Simple Demo</a>
+      </p>
+    </div>
     <!--start footer-->
     <div class="b-footer"><small class="b-footer__credits">@andru255 | @frontendlabs</small>
     </div>

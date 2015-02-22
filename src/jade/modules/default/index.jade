@@ -2,11 +2,14 @@ extends ../../_layout/default.jade
 //the own css
 block module_css
     link(href="#{page.static_url}css/modules/default/index.css#{page.version}", media="all", rel="stylesheet", type="text/css")
+
 //demo index
 block b-header
-    h1 Hello its a BEM demo
-    include ../../_blocks/menu.jade
-    include ../../_blocks/search.jade
+    +e("h1").title Welcome to the BEM-JaSt Demo!
 
 block content
-    include ../../_blocks/list.jade
+    +b.content
+        +e(p).welcome
+            | BEM + Jade + Stylus = BEM-JaSt
+        p
+            +e(a).see-demo(href="#{page.url}modules/simple/index.html") Click here for a Simple Demo

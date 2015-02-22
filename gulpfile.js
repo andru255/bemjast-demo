@@ -9,6 +9,7 @@ var gulp = require("gulp"),
     gutil = require("gulp-util"),
     file = require("gulp-file"),
     parseArgs = require("minimist"),
+    browserSync = require("browser-sync"),
     jeet = require("jeet"),
     runTask = function(taskName, options){
         var taskSelf = require("./tasks/"+ taskName);
@@ -106,9 +107,20 @@ runMainTask("bemjast", {
     pathAllModulesStylus: SRC_PATH + "stylus/modules/all/",
 });
 
-gulp.task("watch", function(){
-    gulp.watch(watchPaths.jade, ["2html"]);
-    gulp.watch(watchPaths.stylus, ["2css"]);
+gulp.task("browser-sync", function(){
+    browserSync({
+        server: {
+            baseDir: "./build/",
+            directory: true
+        },
+        port: 8000
+    });
+});
+
+gulp.task("watch",function(){
+    gulp.watch(watchPaths.jade, ["2html", browserSync.reload]);
+    gulp.watch(watchPaths.stylus, ["2css", browserSync.reload]);
 });
 
 gulp.task("default", ["2css", "2html"]);
+gulp.task("server", ["browser-sync", "watch"]);
